@@ -6,7 +6,12 @@
     <AssemblyName>TelerikTagHellpers</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
-  </PropertyGroup>  
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\css\site-nova.css" />
+    <Content Include="wwwroot\css\Site.css" />
+  </ItemGroup>  
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.0" />

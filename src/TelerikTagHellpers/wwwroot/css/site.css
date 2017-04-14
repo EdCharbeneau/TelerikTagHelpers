@@ -1,116 +1,113 @@
-﻿html {
-    position: relative;
-    min-height: 100%;
+﻿/* Global */
+
+img {
+    height: auto;
+    max-width: 100%;
 }
 
-body {
-    padding-bottom: 60px;
+article {
+    background-color: #F5F6F6;
+    height: 100vh;
 }
 
-/*Wrapping element 
- Set some basic padding to keep content from hitting the edges*/
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+/* Top Bar */
 
-/* Set widths on the form inputs since otherwise they're 100% wide */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
-.label {
-    color: #337ab7;
-}
-
-
-/* Sticky footer styles */
-.footer {
+.hamburger {
     position: absolute;
-    bottom: 10px;
-    height: 40px;
+    top: 5px;
+    left: 5px;
 }
 
-    .footer .text-muted {
-        margin: 0;
-        display: inline-block;
+#menuPanel {
+    background-color: #fff;
+    padding: 10px;
+    z-index: 3;
+}
+
+#app-title-bar {
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+}
+
+    #app-title-bar .title {
+        font-size: 22px;
+        text-transform: uppercase;
     }
 
-.body-content > .row:first-child {
-    margin-bottom: 15px;
+/* App */
+#employee-details {
+    padding-top: 20px;
 }
 
-.k-tabstrip ul li.k-item {
-    width: 100px;
+#employee-about {
+    font-size: 18px;
+    text-align: center;
 }
 
-h1 a {
-    color: #e0e0e0;
-    text-decoration: none;
-}
-
-h1 a:hover,
-h1 a:active {
-    color: #ffffff;
-    text-decoration: none;
-} 
-
-.img-responsive {
-    padding-top: 25px;
-}
-
-/* Styling menu toggle button */
-.btn-toggle {
-    position: absolute;
-    top: 0;
-    left: 0;
+#employee-list > ul {
+    border: 0;
     box-shadow: none;
-    height: 48px;
+    padding: 0;
+    list-style: none;
 }
 
-    .btn-toggle .k-icon {
-        opacity: 1;
-    }
+#employee-list img, #employee-about img {
+    margin-right: 5px;
+}
 
-    .btn-toggle,
-    .btn-toggle:focus:active:not(.k-state-disabled):not([disabled]),
-    .btn-toggle:focus:not(.k-state-disabled):not([disabled]) {
-        box-shadow: none;
-        border-radius: 0;
-    }
-
-        .btn-toggle .k-i-hbars,
-        .btn-toggle:focus:active:not(.k-state-disabled):not([disabled]) .k-i-hbars,
-        .btn-toggle:focus:not(.k-state-disabled):not([disabled]) .k-i-hbars {
-            background-position: -80px -32px;
-        }
-
-/* Styling menu and header for smaller resolutions */
-@media (max-width: 768px) {
-
-    .k-header h1 {
-        margin: 0;
-        padding: 16px 15px 14px 60px;
-        font-size: 18px;
-        font-weight: lighter;
-    }
+#employee-list img {
+    border-width: 1px;
+    max-width: 30px;
+}
 
 
-    .k-rpanel {
-        position: relative;
-        box-sizing: border-box;
+#employee-list div {
+    padding: 5px 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: block;
+}
+
+    #employee-list div:hover {
+        text-decoration: none;
+        cursor: pointer;
     }
-    .k-rpanel .k-menu {
-        float: none;
-        display: block;
-        box-sizing: border-box;
+
+.chart-wrap {
+    text-align: right;
+    background-color: #fff;
+    padding: 10px 10px;
+    border: 1px solid #E0E0E0;
+    margin-top: 10px;
+}
+
+.chart-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: right;
+    color: #9DA2A4;
+}
+
+.sales-report-value {
+    text-transform: uppercase;
+    font-size: 28px;
+}
+
+
+
+/* Small Devices, Tablets, and Up */
+@media only screen and (min-width : 768px) {
+    #employee-about {
+        text-align: left;
     }
-    .k-rpanel .k-menu .k-item {
-        display: block;
-        clear: both;
-        float: none;
-        width: 100%;
+
+    #app-title-bar .title {
+        text-align: left;
     }
+
+    #main-section-content {
+        margin-left: 320px;
+    }
+
 }

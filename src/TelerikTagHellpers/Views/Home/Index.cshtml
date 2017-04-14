@@ -1,92 +1,74 @@
 ﻿@{
 	ViewData["Title"] = "Home Page";
 }
+<section id="app-title-bar" class="row">
+    <div class="col-sm-3">
+        <h1 class="title">@ViewBag.Title</h1>
+    </div>
+</section>
 
-<div class="row">
-	<div class="col-xs-4 col-md-3 placeholder">
-		<img class="img-responsive" alt="200x200" src="~/Images/200.png">
-	</div>
-	<div class="col-xs-12 col-md-9">
-		<div class="row">
-			<div class="col-xs-12 col-md-12">
-				<h2>Lorem ipsum...</h2>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-md-4">
-				<p>
-					Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-					Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-					galley of type and scrambled it to make a type specimen book.
-				</p>
+<div class="app-wrapper">
+    <!-- Menu Panel -->
+    <div class="hamburger">
+        <!-- toggle button for responsive panel, hidden on large screens -->
+        <kendo-button name="menuPanelToggle" class="k-rpanel-toggle" icon="menu"></kendo-button>
+    </div>
 
-				<p>
-					@(Html.Kendo()
-				.Button()
-				.Name("PrimaryButton")
-				.Content("Primary Button")
-				.HtmlAttributes(new { @class = "textButton k-primary" }))
-				</p>
-			</div>
+    <kendo-responsivepanel auto-close="true" breakpoint="768" name="menuPanel">
+        <kendo-button name="menuPanelClose" icon="close" class="k-rpanel-toggle">Close</kendo-button>
+        <h3>Report Range</h3>
+        <p><label for="startDate">Stats from</label></p>
+        <p>
+            <!-- Stats From Date Picker -->
+            <kendo-datepicker name="startDate"
+                              start="CalendarView.Year"
+                              depth="CalendarView.Year"
+                              format="MMMM yyyy"
+                              value='DateTime.Parse("November 2011")'
+                              style="width: 100%;"/>
+        </p>
+        <p><label for="endDate">Stats to</label></p>
+        <p>
+            <!-- Stats To Date Picker -->
+            <kendo-datepicker name="endDate"
+                              start="CalendarView.Year"
+                              depth="CalendarView.Year"
+                              format="MMMM yyyy"
+                              value='DateTime.Parse("November 2012")'
+                              style="width: 100%;" />
+        </p>
+    </kendo-responsivepanel>
+    <!-- /Menu Panel -->
 
-			<div class="col-xs-12 col-md-4">
-				<p>
-					Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-					Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-					galley of type and scrambled it to make a type specimen book.
-				</p>
-				<p>
-					@(Html.Kendo()
-				.Button()
-				.Name("TextButton")
-				.Content("Button")
-				.HtmlAttributes(new { @class = "textButton" }))
-				</p>
-
-			</div>
-			<div class="col-xs-12 col-md-4">
-				<p>
-					Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-					Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-					galley of type and scrambled it to make a type specimen book.
-				</p>
-
-				<p>
-					@(Html.Kendo()
-				.Button()
-				.Name("Button")
-				.Content("Button")
-				.HtmlAttributes(new { @class = "textButton" }))
-				</p>
-
-			</div>
-		</div>
-	</div>
-
+    <section id="main-section-content" class="row">
+        <article class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>Orders</h3>
+                    <!-- Orders -->
+                    @(Html.Kendo().Grid<TelerikTagHellpers.Models.OrderViewModel>()
+                                    .Name("grid")
+                                    .Columns(columns =>
+                                    {
+                                        columns.Bound(p => p.OrderID).Filterable(false);
+                                        columns.Bound(p => p.Freight).MinScreenWidth(900);
+                                        columns.Bound(p => p.OrderDate).Format("{0:MM/dd/yyyy}");
+                                        columns.Bound(p => p.ShipName); 
+                                        columns.Bound(p => p.ShipCity).MinScreenWidth(768);
+                                    })
+                                    .Pageable()
+                                    .Sortable()
+                                    .Filterable()
+                                    .DataSource(dataSource => dataSource
+                                        .Ajax()
+                                        .PageSize(20)
+                                        .Read(read => read.Action("Orders_Read", "Grid"))
+                                    )
+                    )                
+                </div>
+            </div>
+        </article>
+    </section>
 </div>
 
-<div class="row">
-	<div class="col-xs-18 col-md-12">
-		@(Html.Kendo().Grid<TelerikTagHellpers.Models.OrderViewModel>()
-				.Name("grid")
-				.Columns(columns =>
-				{
-					columns.Bound(p => p.OrderID).Filterable(false);
-					columns.Bound(p => p.Freight);
-					columns.Bound(p => p.OrderDate).Format("{0:MM/dd/yyyy}");
-					columns.Bound(p => p.ShipName);
-					columns.Bound(p => p.ShipCity);
-				})
-				.Pageable()
-				.Sortable()
-				.Scrollable()
-				.Filterable()
-				.HtmlAttributes(new { style = "height:550px;" })
-				.DataSource(dataSource => dataSource
-					.Ajax()
-					.PageSize(20)
-					.Read(read => read.Action("Orders_Read", "Grid"))
-				)
-		)
-	</div>
-</div>
+
