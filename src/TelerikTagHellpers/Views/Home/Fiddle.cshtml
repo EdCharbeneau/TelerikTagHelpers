@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "_JustKendo";
+}
+<div id="example">
+    <kendo-splitter name="vertical" orientation="SplitterOrientation.Vertical">
+        <kendo-splitter-pane tag-name="top-pane" collapsible="false">
+            <kendo-splitter name="horizontal" style="height: 100%; width: 100%;" orientation="SplitterOrientation.Horizontal">
+                <kendo-splitter-pane id="left-pane">
+                    <div class="pane-content">
+                        <h3>HTML</h3>
+                        <textarea id="code" style="height: 100vh; width: 100%;"></textarea>
+                    </div>
+                </kendo-splitter-pane>
+                <kendo-splitter-pane id="center-pane">
+                    <div class="pane-content">
+                        <h3>CSS</h3>
+                        <textarea id="style" style="height: 100vh; width: 100%;"></textarea>
+                    </div>
+                </kendo-splitter-pane>
+                <kendo-splitter-pane id="right-pane">
+                    <div class="pane-content">
+                        <h3>JS</h3>
+                        <textarea id="js" style="height: 100vh; width: 100%;"></textarea>
+                    </div>
+                </kendo-splitter-pane>
+            </kendo-splitter>
+        </kendo-splitter-pane>
+        <kendo-splitter-pane name="middle-pane" collapsible="false" >
+            <div class="pane-content">
+                <h3>Live Preview</h3>
+                <div id="preview">
+
+                </div>
+            </div>
+        </kendo-splitter-pane>
+        <kendo-splitter-pane id="bottom-pane" collapsible="false" resizable="false" size="100px" >
+            <div class="pane-content">
+                <h3>Debug</h3>
+                <p>Non-resizable and non-collapsible.</p>
+            </div>
+        </kendo-splitter-pane>
+    </kendo-splitter>
+
+    @section scripts {
+        <script>
+            $(document).ready(function () {
+                $("#code, #style, #js").blur(function () {
+                    $("#preview").html($("<style></style>").append($("#style").val()));
+                    $("#preview").append($("#code").val());
+                    eval($("#js").val());
+                });
+            });
+        </script>
+
+        <style>
+            #vertical {
+                height: 100vh;
+                margin: 0 auto;
+            }
+
+            #middle-pane {
+                background-color: rgba(60, 70, 80, 0.10);
+            }
+
+            #bottom-pane {
+                background-color: rgba(60, 70, 80, 0.15);
+            }
+
+            #left-pane, #center-pane, #right-pane {
+                background-color: rgba(60, 70, 80, 0.05);
+            }
+
+            .pane-content {
+                padding: 0 10px;
+            }
+        </style>
+    }
+</div>

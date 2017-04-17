@@ -13,6 +13,11 @@ namespace TelerikTagHellpers.Controllers
             return View();
         }
 
+        public IActionResult Fiddle()
+        {
+            return View();
+        }
+
         public IActionResult Error()
         {
             return View();
