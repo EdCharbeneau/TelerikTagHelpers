@@ -1,5 +1,5 @@
 ﻿@{
-	ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home Page";
 }
 <section id="app-title-bar" class="row">
     <div class="col-sm-3">
@@ -25,7 +25,7 @@
                               depth="CalendarView.Year"
                               format="MMMM yyyy"
                               value='DateTime.Parse("November 2011")'
-                              style="width: 100%;"/>
+                              style="width: 100%;" />
         </p>
         <p><label for="endDate">Stats to</label></p>
         <p>
@@ -36,6 +36,9 @@
                               format="MMMM yyyy"
                               value='DateTime.Parse("November 2012")'
                               style="width: 100%;" />
+        </p>
+        <p class="text-right">
+            <a asp-action="Fiddle" class="text-muted" >Fiddle Demo</a>
         </p>
     </kendo-responsivepanel>
     <!-- /Menu Panel -->
@@ -53,7 +56,7 @@
                                         columns.Bound(p => p.OrderID).Filterable(false);
                                         columns.Bound(p => p.Freight).MinScreenWidth(900);
                                         columns.Bound(p => p.OrderDate).Format("{0:MM/dd/yyyy}");
-                                        columns.Bound(p => p.ShipName); 
+                                        columns.Bound(p => p.ShipName);
                                         columns.Bound(p => p.ShipCity).MinScreenWidth(768);
                                     })
                                     .Pageable()
@@ -64,11 +67,9 @@
                                         .PageSize(20)
                                         .Read(read => read.Action("Orders_Read", "Grid"))
                                     )
-                    )                
+                    )
                 </div>
             </div>
         </article>
     </section>
 </div>
-
-
